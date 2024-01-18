@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:load": "node src/database/generators/load.js",
+    "db:drop": "del src\\\\database\\\\database.sqlite"
   },
   "author": "",
   "license": "ISC",

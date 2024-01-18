@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
-import Model from '../../models/Model.js';
+import Model from '../../model/Model.js';
 
 async function up () {
 	const file = resolve( 'src', 'database', 'generators', 'jsons', 'data.json' );
@@ -8,14 +8,15 @@ async function up () {
 	const data = JSON.parse( readFileSync( file ) );
 
 	var index = 0
-	var tables = ['users']
+	var tables = ['admin']
 	
 	for (const key in data) {
 		if (Object.hasOwnProperty.call(data, key)) {
 			const array = data[key];
 			for (const element of array) {
 				if(array.length != 0){
-					await Model.createItem(tables[index], element);
+					let result = await Model.insertItem(tables[index], element);
+					console.log("added",tables[index],"=>", element)
 				}
 			}
 		}

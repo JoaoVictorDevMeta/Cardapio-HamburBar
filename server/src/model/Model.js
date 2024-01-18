@@ -5,8 +5,22 @@ class DatabaseManagementSystem {
 	async readItems(tipo){
         const database = await Database.connect();
         let query = `SELECT * FROM item WHERE tipo = ?`;
-        const result = await database.all(query, tipo)
+        const result = await database.all(query, tipo);
         return result
+    }
+
+    async readAdmin(nome){
+        const database = await Database.connect();
+        let query = `SELECT * FROM admin WHERE email = ?`;
+        const result = await database.get(query, nome);
+        return result
+    }
+
+    async createAdmin(nome, email, password){
+        const database = await Database.connect();
+        let query = ` INSERT INTO admin (email, password, name) VALUES (?, ?, ?)`;
+        const result = await database.run(query, [email, password, nome]);
+        return "added user" + result;
     }
 }
 

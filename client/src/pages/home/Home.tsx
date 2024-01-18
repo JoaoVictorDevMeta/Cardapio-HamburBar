@@ -1,5 +1,3 @@
-
-
 import './Home.scss';
 import comboImage from '../../images/comboImage.png';
 
@@ -28,6 +26,10 @@ function Home() {
             <MenuContainer lado={true} categoria="hamburguer" imagem={comboImage} titulo="Nossos melhores Hamburguers" />
             
             <MenuContainer lado={false} categoria="acompanhamento" imagem={comboImage} titulo="Para acompanhar" />
+        </section>
+
+        <section className='social'>
+
         </section>
     </>
   )

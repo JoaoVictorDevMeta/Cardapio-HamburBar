@@ -11,12 +11,11 @@ interface MyItems {
     lado: boolean;
 }
 
-
 function MenuContainer({ titulo, imagem, categoria, lado }: MyItems) {
     const [menus, setMenus] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/items/${categoria}`)
+        axios.get(`http://localhost:5000/api/items/${categoria}`)
         .then(response => {
             setMenus(response.data);
         })

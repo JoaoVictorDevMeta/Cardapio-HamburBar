@@ -1,17 +1,9 @@
-import { useState } from 'react';
-
 import Hamburguer1 from '../../images/Hamburguer1.png'
 import './login.scss'
 
-import { useForm } from 'react-hook-form';
+import LoginForm from '../../components/login-form/LoginForm'
 
 function Login() {
-  const { output, setOutPut } = useState('')
-  const { register, handleSubmit } = useForm();
-
-  function loginUser(data: any) {
-    console.log(data);
-  }
 
   return (
     <div className='login'>
@@ -22,31 +14,7 @@ function Login() {
         <img src={Hamburguer1} alt="imagem ilustrativa" />
       </section>
       <section className="login-form">
-        <form
-          onSubmit={handleSubmit(loginUser)}
-        >
-          <h1>Login</h1>
-
-          <div className='login-input'>
-            <label htmlFor="">E-mail</label>
-            <input 
-              type="email"
-              {...register('email')}
-            />
-          </div>
-
-          <div className='login-input'>
-            <label htmlFor="">Senha</label>
-            <input 
-              type="password"
-              {...register('password')}
-            />
-          </div>
-
-          <button
-            type="submit" 
-          >Logar</button>
-        </form>
+        <LoginForm/>
       </section>
     </div>
   )

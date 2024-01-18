@@ -1,3 +1,7 @@
+$redhat: 'Red Hat Display', sans-serif;
+$base-color: #F9D923;
+$second-color: #EB5353;
+
 .login{
     display: flex;
     height: 87vh;
@@ -26,6 +30,52 @@
         h1{
             font-size: 48px;
             font-weight: 400;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 30vh;
+            align-items: center;
+            width: 100%;
+
+            .login-input{
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                position: relative;
+
+                input{
+                    border: none;
+                    border-bottom: 2px solid;
+                    padding: 5px;
+                    font-size: 18px;
+                }
+
+                span{
+                    color: red;
+                    position: absolute;
+                    bottom: -24px;
+                }
+            }
+
+            button{
+                height: 60px;
+                width: 220px;
+                font-size: 24px;
+                color: #FFF;
+                background: $second-color;
+                font-family: $redhat;
+                border-radius: 20px;
+                border: none;
+                cursor: pointer;
+                
+                &:hover{
+                    opacity: 0.7;
+                    border: 1px solid black;
+                }
+            }
         }
     }
 }

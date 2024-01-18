@@ -1,4 +1,9 @@
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 function Header() {
+  const {currentUser} = useSelector((state:any) => state.user);
+
   return (
     <header
         style={{
@@ -9,12 +14,12 @@ function Header() {
         justifyContent: "space-between",
         }}
     >
-        <a 
+        <Link
             style={{
             color: "black",
             textDecoration: "none",
             }}
-            href="/"
+            to="/"
         >
             <h1
                 style={{
@@ -22,8 +27,12 @@ function Header() {
                     fontWeight: "900",
                 }}
             >HamburBar</h1>
-      </a>
-      <h2>Logado como</h2>
+      </Link>
+      {currentUser ?( 
+        <Link to='/profile' style={{ color: "black", textDecoration: "none",}}>
+          <h2>Logado como {currentUser.name}</h2>
+        </Link>
+      ) : null}
     </header>
   )
 }

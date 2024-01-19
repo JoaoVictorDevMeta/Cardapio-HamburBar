@@ -31,14 +31,8 @@ class Login {
     }   
   }
 
-  logout = async(req, res, next) => {
-    
-    return res.redirect("/");
-  }
-
-  isLogged = (req, res, next) => {
-    
-    next()
+  logout = async(req, res) => {
+    res.clearCookie('access_token').status(200).json('Logout concluido');
   }
 }
 

@@ -9,6 +9,13 @@ class DatabaseManagementSystem {
         return result
     }
 
+    async readUserItems(id){
+        const database = await Database.connect();
+        let query = `SELECT * FROM item WHERE user_id = ?`;
+        const result = await database.all(query, id);
+        return result
+    }
+
     async insertItem(table, row){ // peguei de outro projeto que fiz
         const database = await Database.connect();
 		var dataTable = {};

@@ -1,3 +1,4 @@
+import { IoTrashBin } from "react-icons/io5";
 
 type MenuItems = {
     title: string
@@ -5,9 +6,10 @@ type MenuItems = {
     image: string
     imageDesc: string
     price: number
+    isActive: boolean
 }
 
-function Container({ title, description, image, imageDesc, price }:MenuItems) {
+function Container({ title, description, image, imageDesc, price, isActive }:MenuItems) {
 
   return <a>
         <img height="110" src="https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2022/12/hamburguer-unsplash.jpg?w=1200&h=1200&crop=1" alt={imageDesc + image} />
@@ -21,6 +23,7 @@ function Container({ title, description, image, imageDesc, price }:MenuItems) {
             <h5>
                 R${price}
             </h5>
+            { isActive && <button><IoTrashBin /></button>}
         </div>
     </a> 
 }

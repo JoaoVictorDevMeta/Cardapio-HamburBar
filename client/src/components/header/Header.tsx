@@ -7,7 +7,7 @@ function Header() {
   return (
     <header
         style={{
-        height: "13vh",
+        height: "13dvh",
         width: "100%",
         padding: "20px 90px 0px",
         display: "flex",

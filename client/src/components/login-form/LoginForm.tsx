@@ -35,7 +35,11 @@ function LoginForm() {
     function loginUser(data: any) {
         dispatch(signInStart());
 
-        axios.post('http://localhost:5000/api/auth/login', data)
+        axios.post('/api/auth/login', data, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
         .then((response) => {
             dispatch(signInSuccess(response.data));
             Swal.fire({

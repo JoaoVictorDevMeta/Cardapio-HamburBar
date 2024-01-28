@@ -21,39 +21,6 @@
             border-radius: 10px;
             padding: 10px;
 
-            .container-item{
-                width: 75%;
-                min-height: 120px;
-                padding: 10px 0px;
-                margin-left: 2vw;
-                border-bottom: 1px solid rgb(198, 198, 198);
-
-                a{
-                    text-decoration: none;
-                    color: black;
-                    display: flex;
-                    gap: 20px;
-                }                
-
-                img{
-                    position: relative;
-                    left: 0;
-                    right: 0;
-                    border-radius: 10px;
-                    background-color: gray;
-                    width: 110px;
-                }
-
-                h6{
-                    font-size: 25px;
-                    color: red;
-                }
-
-                h5{
-                    padding-top: 10px;
-                    font-size: 24px;
-                }
-
                 /*
                 h5{
                     font-size: 24px;
@@ -66,7 +33,6 @@
                     align-items: center;
                     justify-content: center;
                 }*/
-            }
         }
     }
 

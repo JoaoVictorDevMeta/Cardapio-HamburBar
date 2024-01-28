@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import MenuItem from './MenuItem';
+import MenuItem from '../shared/MenuItem';
 
 import './MenuContainer.scss'
 
@@ -31,7 +31,7 @@ function MenuContainer({ titulo, imagem, categoria, lado }: MyItems) {
                 <div className='component-container'>
                     {menus.map(item => (
                         <div className="container-item" key={(item as any).id}>
-                            <MenuItem {...item as any} />
+                            <MenuItem {...item as any} isActive={false} />
                         </div>
                     ))}
                 </div>

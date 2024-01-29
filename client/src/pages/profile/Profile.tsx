@@ -71,7 +71,7 @@ function Profile() {
             </h1>
             <ul>
                 <li>
-                    <Link to='#'>Adicionar Item</Link>
+                    <Link to='/postItem'>Adicionar Item</Link>
                 </li>
                 <li>
                     <Link to='#'>Aplicar Desconto</Link>

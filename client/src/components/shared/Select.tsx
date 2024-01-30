@@ -21,7 +21,9 @@ export const CompSelect: React.FC<CompSelectProps> = ({ control, name, options }
         <Select
           {...field}
           options={options}
-          onChange={(option) => field.onChange(option?.value)}
+          onChange={(option) => {
+            field.onChange(option?.value);
+          }}
           value={options.find(option => option.value === field.value)}
         />
       )}

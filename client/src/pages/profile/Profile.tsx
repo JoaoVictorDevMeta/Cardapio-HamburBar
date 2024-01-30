@@ -30,7 +30,7 @@ function Profile() {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/items/user/${currentUser.id}`, {
+        axios.get(`/api/items/user/${currentUser.id}`, {
             withCredentials: true,
         })
         .then(response => {
@@ -42,7 +42,7 @@ function Profile() {
     <section className="profile-section">
         <div className="profile">
             <div className="info-user">
-                <img src="" alt="" />
+                <img src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_kids_avatar_user_profile_icon_149314.png" alt="DefaultImage" />
                 <h2>
                     {currentUser.name}
                 </h2>

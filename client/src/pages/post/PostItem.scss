@@ -21,6 +21,9 @@
         span{
             font-size: 14px;
             color: red;
+            position: absolute;
+            bottom: -30px;
+            left: 20px;
         }
 
         .item-container{
@@ -44,8 +47,13 @@
                     //grid-area: image;
                     width: 140px;
                     height: 140px;
+                    object-fit: contain;
                     background: var(--second-color);
                     border-radius: 10px;                
+                }
+                .image-input{
+                    display: flex;
+                    flex-direction: column;
                 }
 
                 .inputs{
@@ -56,6 +64,7 @@
                 }
 
                 .input-item{
+                    position: relative;
                     padding-left: 20px;
                     //padding-bottom: 40px;
 
@@ -74,7 +83,7 @@
 
                 .nome{
                     width: 100%;
-                    padding-bottom: 40px;
+                    margin-bottom: 40px;
                 }
                 .price{
                     width: 30%;

@@ -21,7 +21,7 @@ function PostItem() {
   const [filePercent, setFilePercent] = useState(0);
   const [formData, setFormData] = useState<{ profilePicture?: string }>({});
   const [fileError, setFileError] = useState(false);
-  const { loading, currentUser} = useSelector((state:any) => state.user);
+  const { loading } = useSelector((state:any) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -78,7 +78,7 @@ function PostItem() {
   const postItem = async () => {
     dispatch(signInStart());
 
-    axios.post(`/api/items/postitem/${currentUser.id}`, formData, {
+    axios.post(`/api/items/postitem`, formData, {
       withCredentials: true,
     }).then((response) => {
         dispatch(loadSuccess());

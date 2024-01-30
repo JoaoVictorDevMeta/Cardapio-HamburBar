@@ -55,6 +55,13 @@ class DatabaseManagementSystem {
         const result = await database.run(query, [email, password, nome]);
         return "added user" + result;
     }
+
+    async deleteItem(id){
+        const database = await Database.connect();
+        let query = ` DELETE FROM item WHERE id = ?`;
+        const result = await database.run(query, id)
+        return 'deleted item' + result;
+    }
 }
 
 const Model = new DatabaseManagementSystem();

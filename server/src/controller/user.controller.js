@@ -13,11 +13,6 @@ export const readUserItems = async (req, res, next) => {
 
 export const createItem = async (req, res, next) => {
     const database = await Database.connect();
-    
-    if (req.user.id != req.params.id) {
-        return next(errorHandler(401, 'This not your account!'));
-    }
-    
 
     try{
         const price = parseFloat(req.body.price.replace(',', '.')).toFixed(2);
@@ -37,6 +32,16 @@ export const createItem = async (req, res, next) => {
         res.status(200).send('Item adicionado com sucesso!');
     } catch(err) {
         console.log(err);
+        next(err);
+    }
+}
+
+export const deleteItem = async (req, res, next) => {
+    try{
+        const result = await Model.deleteItem(req.body.id)
+        res.status(200).send("deleted")
+    } catch(err) {
+        console.log(err)
         next(err);
     }
 }

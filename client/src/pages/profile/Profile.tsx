@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 
 import MenuItem from "../../components/shared/MenuItem";
-
+import { IoTrashBin } from "react-icons/io5";
 import './Profile.scss'
 
 function Profile() {
     const dispatch = useDispatch();
-    const [menus, setMenus] = useState([])
+    const [menus, setMenus] = useState<any[]>([]);
     const {currentUser} = useSelector((state:any) => state.user);
 
     async function handleLogout(){
@@ -38,6 +38,44 @@ function Profile() {
         })
     }, [])
 
+    const handleDelete = async (id: number) => {
+        Swal.fire({
+            icon: 'question',
+            text: 'Tem certeza que deseja excluir o Item',
+            showCancelButton: true,
+            cancelButtonColor: '#DD6B55',
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Não',
+        }).then( async (isConfirm)=>{
+            if(isConfirm.value){
+                try {
+                    await axios.post('/api/items/deleteitem', { id: id }, { withCredentials: true })
+                    .then(() => {
+                        Swal.fire({
+                            title: 'Deletado com sucesso',
+                            icon: 'success',
+                            confirmButtonText: 'Continuar',
+                        })  
+                    }).catch(() => {
+                        Swal.fire({
+                            title: 'Algo deu errado',
+                            icon: 'error',
+                            confirmButtonText: 'Tentar Novamente',
+                        })
+                    });
+                    setMenus(menus.filter(item => item.id !== id));
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                Swal.fire({
+                    title: 'Cancelado',
+                    confirmButtonText: 'Continuar',
+                }) 
+            }
+        })  
+    };
+
   return (
     <section className="profile-section">
         <div className="profile">
@@ -58,8 +96,9 @@ function Profile() {
             <h1>Itens Adicionados</h1>
             <ul>
                 {menus.map(item => (
-                    <li className="container-item" key={(item as any).id}>
-                        <MenuItem {...item as any} isActive={true}/>
+                    <li className="container-item" key={item.id}>
+                        <MenuItem {...item}/>
+                        <button onClick={() => handleDelete(item.id)}><IoTrashBin /></button>
                     </li>
                 ))}
             </ul>

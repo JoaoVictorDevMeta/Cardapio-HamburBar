@@ -21,7 +21,7 @@ function Home() {
                 </h1>
             </div>
             
-            <MenuContainer lado={false} categoria="combo" imagem={comboImage} titulo="Combos para você!" />
+            <MenuContainer lado={false} categoria="combos" imagem={comboImage} titulo="Combos para você!" />
 
             <MenuContainer lado={true} categoria="hamburguer" imagem={comboImage} titulo="Nossos melhores Hamburguers" />
             

@@ -47,13 +47,17 @@
                     //grid-area: image;
                     width: 140px;
                     height: 140px;
-                    object-fit: contain;
+                    object-fit: cover;
                     background: var(--second-color);
                     border-radius: 10px;                
                 }
                 .image-input{
                     display: flex;
                     flex-direction: column;
+                    position: relative;
+                    span{
+                        bottom: 0px;
+                    }
                 }
 
                 .inputs{

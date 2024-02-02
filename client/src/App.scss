@@ -28,7 +28,7 @@ ul{
 }
 
 .container-item{
-  width: 75%;
+  width: 520px;
   min-height: 120px;
   padding: 10px 0px;
   margin-left: 2vw;
@@ -43,17 +43,16 @@ ul{
   }                
 
   img{
-      position: relative;
-      left: 0;
-      right: 0;
       border-radius: 10px;
       background-color: var(--base-color);
       width: 110px;
+      object-fit: cover;
   }
 
   h6{
       font-size: 25px;
       color: red;
+      font-weight: 400;
   }
 
   h5{
@@ -65,6 +64,7 @@ ul{
     word-break: break-word;
   }
 
+  
   button{
     display: flex;
     justify-content: center;

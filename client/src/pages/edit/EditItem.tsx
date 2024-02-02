@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRef, useState, useEffect } from 'react';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { app } from '../../firebase';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -11,9 +11,17 @@ import Swal from 'sweetalert2';
 import { CompSelect } from '../../components/shared/Select';
 import { createUserFormSchema, UserFormData } from '../../schema/UserFormSchema';
 import { signInStart, loadSuccess } from '../../redux/user/userSlice';
-import { Options } from './options/Options';
-import defaultImage from '../../assets/1034957-200.png'
-import './PostItem.scss';
+import { Options } from '../post/options/Options';
+import '../post/PostItem.scss';
+
+interface item {
+  title: string,
+  price: string,
+  description: string,
+  tipo: string,
+  image: string,
+  imageDesc : string
+}
 
 function PostItem() {
   const fileRef = useRef(null);
@@ -22,8 +30,24 @@ function PostItem() {
   const [formData, setFormData] = useState<{ profilePicture?: string }>({});
   const [fileError, setFileError] = useState(false);
   const { loading } = useSelector((state:any) => state.user);
+  const [ item, setItem ] = useState<item>({
+    title: "",
+    price: "",
+    description: "",
+    tipo: "",
+    image: "",
+    imageDesc: ""
+  })
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    axios.get(`/api/items/item/${id}`)
+    .then(response =>{
+      setItem(response.data)
+    })
+  }, [])
 
   const { 
     register, 
@@ -78,7 +102,7 @@ function PostItem() {
   const postItem = async () => {
     dispatch(signInStart());
 
-    axios.post(`/api/items/postitem`, formData, {
+    axios.post(`/api/items/edititem`, {...formData, id: id}, {
       withCredentials: true,
     }).then((response) => {
         dispatch(loadSuccess());
@@ -127,7 +151,7 @@ function PostItem() {
                 }}
               />
               <img 
-                src={ formData.profilePicture || defaultImage}
+                src={ formData.profilePicture ? formData.profilePicture : (item.image && item.image.length > 1) ? item.image : 'https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2022/12/hamburguer-unsplash.jpg?w=1200&h=1200&crop=1'}
                 alt="Product_Image_Input"
                 onClick={() => (fileRef.current as HTMLInputElement | null)?.click()} 
               />
@@ -142,6 +166,7 @@ function PostItem() {
                 <label htmlFor="">Nome do Produto</label>
                 <input 
                   id='productName'
+                  defaultValue={item.title}
                   type="text" 
                   {...register('productName')}
                   onChange={handleChange}
@@ -153,6 +178,7 @@ function PostItem() {
                 <label htmlFor="">Preço</label>
                 <input 
                   id='price'
+                  defaultValue={item.price}
                   type="text" 
                   {...register('price')}
                   onChange={handleChange}
@@ -162,7 +188,7 @@ function PostItem() {
 
               <div className='input-item categ'>
                 <label htmlFor="">Categoria</label>
-                <CompSelect control={control} name="category" options={Options} item={"hamburguer"} />
+                <CompSelect control={control} name="category" options={Options} item={""}/>
                 { errors.category && <span>{errors.category.message}</span> }
               </div>
             </div>
@@ -171,6 +197,7 @@ function PostItem() {
             <label htmlFor="">Descrição do produto</label>
             <textarea 
               id="description"
+              defaultValue={item.description}
               maxLength={200}
               {...register('description')}
               onChange={handleChange}
@@ -180,12 +207,12 @@ function PostItem() {
         </div>
 
         <div className="confirm ">
-          <h2>Adicionar Item ao Menu</h2>
-          <p>Descrição não é obrigatória</p>
+          <h2>Editar Item</h2>
+          <p>Lembre de manter as regras dos campos</p>
           <button
             type='submit'
             disabled={!isValid}
-          >{ loading ? 'Carregando...' : 'Adicionar' }</button>
+          >{ loading ? 'Carregando...' : 'Finalizar' }</button>
         </div>
       </form>
     </section>

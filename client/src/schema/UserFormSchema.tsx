@@ -7,8 +7,9 @@ export const createUserFormSchema = z.object({
     .min(1, 'Campo obrigatório'),
     price: z.string()
     .max(6, 'Preço muito alto')
+    .regex(/^[0-9]*[.]?[0-9]+$/, "Deve ser um número")
     .min(1, 'Campo obrigatório')
-    .includes(','),
+    .includes('.'),
     description: z.string({
       invalid_type_error: "Nome deve ser um texto",
     }),

@@ -99,6 +99,7 @@ function Profile() {
                     <li className="container-item" key={item.id}>
                         <MenuItem {...item}/>
                         <button onClick={() => handleDelete(item.id)}><IoTrashBin /></button>
+                        <Link to={`/edititem/${item.id}`} className="editLink">Edit</Link>
                     </li>
                 ))}
             </ul>

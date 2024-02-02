@@ -8,6 +8,7 @@ import Header from "./components/header/Header";
 import './App.scss';
 import PrivateRoute from "./hooks/PrivateRoute";
 import PostItem from "./pages/post/PostItem";
+import EditItem from "./pages/edit/EditItem";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Route element={<PrivateRoute/>}>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/postitem" element={<PostItem/>}/>
+        <Route path="/edititem/:id" element={<EditItem/>}/>
       </Route>
     </Routes>
     </div>

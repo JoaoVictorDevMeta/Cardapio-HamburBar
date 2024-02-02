@@ -8,6 +8,12 @@ class DatabaseManagementSystem {
         const result = await database.all(query, tipo);
         return result
     }
+    async readItem(id){
+        const database = await Database.connect();
+        let query = `SELECT * FROM item WHERE id = ?`;
+        const result = await database.get(query, id);
+        return result
+    }
 
     async readUserItems(id){
         const database = await Database.connect();
@@ -61,6 +67,19 @@ class DatabaseManagementSystem {
         let query = ` DELETE FROM item WHERE id = ?`;
         const result = await database.run(query, id)
         return 'deleted item' + result;
+    }
+
+    async updateItem(id, row){
+        const database = await Database.connect();
+        let query = `UPDATE item SET 
+        title = ?, 
+        description = ?, 
+        image = ?, 
+        imageDesc = ?, 
+        price = ?, 
+        tipo = ? 
+        WHERE id = ${id}`;
+        const result = await database.run(query, row)
     }
 }
 
